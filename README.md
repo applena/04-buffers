@@ -1,9 +1,9 @@
 ![CF](http://i.imgur.com/7v5ASc8.png) LAB
 =================================================
 
-## Project Name
+## Buffer
 
-### Author: Student/Group Name
+### Author: Lena Eivy
 
 ### Links and Resources
 * [repo](http://xyz.com)
