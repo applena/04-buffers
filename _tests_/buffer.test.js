@@ -1,60 +1,27 @@
 'use strict';
 
-const buffer = require('../files/loop');
+const fs = require('fs');
 
 describe('buffer program', () => {
 
-  it('has three items in the array', () => {
-    expect(buffer.length).toEqual(3);
+  it('generates the target string', (done) => {
+    fs.readFile(__dirname+'/../files/loop.js', function(err, data){
+      if (err){throw err;}
+      let expected = '["Adam Eivy","Ilya Eivy","Lena Eivy"].forEach(name=>{console.log(name);});';
+      let result = data.toString();
+      expect(result).toEqual(expected);
+      done();
+    });
   });
-},
+});
 
 describe('pair-programming program', () => {
 
-  it('')
-})
-
-  it('removes the first value of the data set', () => {
-    let stuff = new List();
-    stuff.push('a');
-    stuff.push('b');
-    stuff.shift();
-    expect(stuff.length).toEqual(1);
-    expect(stuff.data[0]).toEqual('b');
+  it('produces html text', () => {
+    fs.readFile(__dirname+'../files/pair-programming.html', function(err, data){
+      let expected = '<article><h2>6 Reasons for Pair Programming</h2><li>Iterative loops.</li>';
+      let result = data.toString().substring(0,expected.length);
+      expect(result).toEqual(expected);
+    });
   });
-
-  it('puts an item at the front of the array', () => {
-    let stuff = new List();
-    stuff.push('a');
-    stuff.push('b');
-    stuff.unshift('z');
-    expect(stuff.length).toEqual(3);
-    expect(stuff.data[0]).toEqual('z');
-  });
-
-  it('starts at an index and removes the number of specified items then puts in the new item at that location', () => {
-    let stuff = new List();
-    stuff.push('a');
-    stuff.push('b');
-    stuff.push('c');
-    stuff.splice(1, 1, 'z');
-    expect(stuff.length).toEqual(3);
-    expect(stuff.data[1]).toEqual('z');
-  });
-
-  it('throws an error when arguments are invalid', () => {
-    let stuff = new List();
-    expect(()=>{
-      stuff.splice('zip', '23');
-    }).toThrow();
-  });
-
-  it('starting at the first param it returns a new obj from that point on or until the second param', () => {
-    let stuff = new List();
-    stuff.push('a');
-    stuff.push('b');
-    stuff.push('c');
-    expect(stuff.slice(1,2)[0]).toEqual('b');
-  });
-
 });
