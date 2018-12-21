@@ -9,10 +9,10 @@ fs.readFile(__dirname+'/pair-programming.txt', function(err, buffer){
 
   let h2Closed = false;
   let h3Closed = true;
-  let numberRegex = (/(49|(5[0-7]))46/)
+  let numberRegex = (/(49|(5[0-7]))46/);
+
   for(let i = 0; i<buffer.length; i++){
     //convert each numbered section to h3 tags
-    // console.log(buffer[i]+buffer[i+1]);
 
     // numbered section (e.g. "1. content" => "<h3>1. content</h3>")
     if(numberRegex.test(buffer[i]+''+buffer[i+1])){
@@ -30,6 +30,8 @@ fs.readFile(__dirname+'/pair-programming.txt', function(err, buffer){
       if(!h2Closed){
         content += new Buffer.from('</h2><li>');
         h2Closed = true;
+      } else if (buffer[i] === 10 && buffer[i+1] === 10) {
+        content += new Buffer.from('<li>');
       }
     }else if(buffer[i] === 46 && !(numberRegex.test(buffer[i-1]+''+buffer[i]))){
       // closing of a sentance (not numbered)
