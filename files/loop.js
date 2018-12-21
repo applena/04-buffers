@@ -1,0 +1,1 @@
+["Adam Eivy","Ilya Eivy","Lena Eivy"].forEach(name=>{console.log(name);});
